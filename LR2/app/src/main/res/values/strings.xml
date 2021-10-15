@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">LR2</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="inputButton">Ввел</string>
+    <string name="previous">Previous</string>
+    <string name="input_number">Введите число</string>
+    <string name="output_number">Чаще всего в вашем числе  встречается цифра %1s</string>
+
+</resources>

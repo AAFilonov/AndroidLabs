@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">LR3</string>
+    <string name="action_settings">Settings</string>
+    <string name="first_fragment_label">Создание заказа</string>
+    <string name="second_fragment_label">Итог</string>
+    <string name="ready">Готов</string>
+    <string name="previous">Назад</string>
+    <string name="guestCount">Количество гостей</string>
+    <string name="hall">Выбранный зал</string>
+    <string name="FirstName">Имя</string>
+    <string name="SecondName">Фамилия</string>
+
+
+    <string-array name="halls">
+
+        <item>Помещение</item>
+        <item>Фрунзе 60</item>
+        <item>Обручева пер. д2</item>
+        <item>Ленина просп. 45</item>
+    </string-array>
+
+    <string-array name="orderType">
+        <item>Тип заказа</item>
+        <item>Частное лицо</item>
+        <item>Организация</item>
+    </string-array>
+    <string name="title_activity_second">SecondActivity</string>
+    <string name="next">Next</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+</resources>

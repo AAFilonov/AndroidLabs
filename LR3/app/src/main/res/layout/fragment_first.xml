@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".first_activivty.FirstFragment">
+
+    <TextView
+        android:id="@+id/textview_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/first_fragment_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="380dp"
+        android:layout_height="668dp"
+        android:orientation="vertical"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Spinner
+            android:id="@+id/spinner_hall"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:entries="@array/halls" />
+
+        <Spinner
+            android:id="@+id/spinner_type"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:entries="@array/orderType" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/guestCount">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/points_gs_input"
+                android:layout_width="184dp"
+                android:layout_height="wrap_content"
+                android:inputType="numberSigned"
+                android:minHeight="48dp" />
+            />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:id="@+id/textView_firstName"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="@string/FirstName" />
+
+        <TextView
+            android:id="@+id/textView_SecondName"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="@string/SecondName" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ready" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
