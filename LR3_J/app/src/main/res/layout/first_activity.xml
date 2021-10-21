@@ -6,104 +6,111 @@
     android:layout_height="match_parent"
     tools:context=".FirstActivity">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="0dp"
-        android:layout_height="568dp"
-        android:orientation="vertical"
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="413dp"
+        android:layout_height="564dp"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonReady"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <RadioGroup
-            android:id="@+id/groupAdress"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/labelType"
+                android:id="@+id/labelAdr2"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
-                android:text="Адрес" />
+                android:text="Контактный номер:" />
 
-            <RadioButton
-                android:id="@+id/radioButton_Adr1"
+            <RadioGroup
+                android:id="@+id/groupType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/labelAdr"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:text="Тип заказа" />
+
+                <RadioButton
+                    android:id="@+id/radioButton_Type1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:text="Частное лицо" />
+
+                <RadioButton
+                    android:id="@+id/radioButton_Type2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Организация" />
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/editTextFirstName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Проспект вознесения 22" />
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:text="Имя" />
 
-            <RadioButton
-                android:id="@+id/radioButton_Adr2"
+            <RadioGroup
+                android:id="@+id/groupAdress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/labelType"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:text="Адрес" />
+
+                <RadioButton
+                    android:id="@+id/radioButton_Adr1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Проспект вознесения 22" />
+
+                <RadioButton
+                    android:id="@+id/radioButton_Adr2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Костычева 3" />
+
+                <RadioButton
+                    android:id="@+id/radioButton_Adr3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ул. Перовского 34" />
+
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/editTextSecondName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Костычева 3" />
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:text="Фамилия" />
 
-            <RadioButton
-                android:id="@+id/radioButton_Adr3"
+            <EditText
+                android:id="@+id/editTextPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ул. Перовского 34" />
-
-        </RadioGroup>
-
-        <RadioGroup
-            android:id="@+id/groupType"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/labelAdr"
-                android:layout_width="match_parent"
-                android:layout_height="38dp"
-                android:text="Тип заказа" />
-
-            <RadioButton
-                android:id="@+id/radioButton_Type1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Частное лицо" />
-
-            <RadioButton
-                android:id="@+id/radioButton_Type2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Организация" />
-        </RadioGroup>
-
-        <EditText
-            android:id="@+id/editTextFirstName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:text="Имя" />
-
-        <EditText
-            android:id="@+id/editTextSecondName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:text="Фамилия" />
-
-        <TextView
-            android:id="@+id/labelAdr2"
-            android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:text="Контактный номер:" />
-
-        <EditText
-            android:id="@+id/editTextPhone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="phone"
-            android:minHeight="48dp"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-    </LinearLayout>
+                android:ems="10"
+                android:inputType="phone"
+                android:minHeight="48dp"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/buttonReady"
@@ -113,6 +120,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
