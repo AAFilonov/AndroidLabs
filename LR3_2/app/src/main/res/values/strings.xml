@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="button_ready">Готово</string>
+    <string name="total">Заявка на азказ торжества: %1$s</string>
+</resources>
