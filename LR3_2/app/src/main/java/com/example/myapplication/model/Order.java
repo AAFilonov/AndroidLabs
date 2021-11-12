@@ -9,6 +9,17 @@ public class Order implements Serializable {
     private String SecondName;
     private String phone;
 
+    public Order() {
+    }
+
+    public Order(String orderTypeName, String hallName, String firstName, String secondName, String phone) {
+        this.orderTypeName = orderTypeName;
+        this.hallName = hallName;
+        this.firstName = firstName;
+        SecondName = secondName;
+        this.phone = phone;
+    }
+
     public String getOrderTypeName() {
         return orderTypeName;
     }

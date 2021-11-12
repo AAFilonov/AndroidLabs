@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
+import com.example.myapplication.db.StaticDatabase;
 import com.example.myapplication.model.Order;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,6 +20,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ((Button) findViewById(R.id.buttonReady)).setOnClickListener(this::handleReady);
+        ((Button) findViewById(R.id.buttonList_Main)).setOnClickListener(this::handleGotToList);
+        StaticDatabase.init(this);
+     //   StaticDatabase.getInstance().insertOrder(new Order("Частное лицо","Костычева 3","Петр" ,"Петров", "+7576856867"));
+    //    String dbName = StaticDatabase.getInstance().getOrders();
+
+    }
+
+    private void handleGotToList(View view) {
+        try {
+
+            Intent secondActivityIntent = new Intent(this, ListActivity.class);
+            startActivity(secondActivityIntent);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void handleReady(View view) {
