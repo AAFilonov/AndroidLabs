@@ -3,6 +3,7 @@ package com.example.lr5;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,10 +19,17 @@ public class MainActivity extends AppCompatActivity {
 
     String[] spinnerItems = {"CMA Small Systems", "Idea promotion", "IT-Pro", "R-Style"};
 
+    static int activeThemeIndex = 1;
+
+    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        if (activeThemeIndex == 1)
+            this.setTheme(R.style.theme1);
+        else if (activeThemeIndex == 2)
+            this.setTheme(R.style.theme2);
         setContentView(R.layout.activity_main);
 
         initSpinner();
@@ -39,11 +47,11 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id) {
             case R.id.style1:
-                this.setTheme(R.style.theme1);
+                activeThemeIndex = 1;
                 this.recreate();
                 return true;
             case R.id.style2:
-                this.setTheme(R.style.theme2);
+                activeThemeIndex = 2;
                 this.recreate();
                 return true;
             case R.id.visiblity:

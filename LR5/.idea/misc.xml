@@ -3,8 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/filon/source/2021-2022/Android/AndroidLabs/LR6/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/Users/filon/source/2021-2022/Android/AndroidLabs/LR6/app/src/main/res/layout/activity_second.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/filon/source/2021-2022/Android/AndroidLabs/LR5/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/filon/source/2021-2022/Android/AndroidLabs/LR5/app/src/main/res/layout/dialog.xml" value="0.25" />
+        <entry key="..\:/Users/filon/source/2021-2022/Android/AndroidLabs/LR5/app/src/main/res/menu/menu.xml" value="0.36102564102564105" />
       </map>
     </option>
   </component>
@@ -13,12 +14,5 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.33" />
-      </ProjectState>
-    </option>
   </component>
 </project>
