@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <style name="theme1" parent="Theme.Design.Light">
+
+    </style>
+
+    <style name="theme2" parent="Theme.LR5">
+
+    </style>
+</resources>

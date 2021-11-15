@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/action_settings"
+        android:title="Стиль">
+
+        <menu>
+            <item
+                android:id="@+id/style1"
+                android:title="Стиль1" />
+            <item
+                android:id="@+id/style2"
+                android:title="Стиль2" />
+        </menu>
+
+    </item>
+
+    <group android:checkableBehavior="all">
+        <item
+
+            android:id="@+id/visiblity"
+            android:checked="true"
+            android:title="Описание" />
+    </group>
+</menu>
