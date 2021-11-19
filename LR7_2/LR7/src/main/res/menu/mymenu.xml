@@ -8,12 +8,16 @@
             android:id="@+id/music"
             android:checked="false"
             android:title="Музыка" />
-    </group>
-    <group android:checkableBehavior="all">
         <item
 
             android:id="@+id/sound"
             android:checked="true"
             android:title="Звуки" />
+        <item
+
+            android:id="@+id/showValues"
+            android:checked="false"
+            android:title="Показывать значения" />
     </group>
+
 </menu>

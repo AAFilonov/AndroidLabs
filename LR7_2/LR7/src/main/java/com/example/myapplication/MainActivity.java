@@ -11,10 +11,13 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean isMusicOn=false;
     public boolean isSoundOn=true;
+    private DrawView drawView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(new DrawView((this)));
+        drawView = new DrawView((this));
+        setContentView(drawView);
     }
 
     @Override
@@ -39,6 +42,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.sound:
                 isSoundOn = !isSoundOn;
                 item.setChecked(!item.isChecked());
+                return true;
+            case R.id.showValues:
+                item.setChecked(!item.isChecked());
+                Drawer.showValues =item.isChecked();
+                drawView.invalidate();
                 return true;
         }
         return super.onOptionsItemSelected(item);
