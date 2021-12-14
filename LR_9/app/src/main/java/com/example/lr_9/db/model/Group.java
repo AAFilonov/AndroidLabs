@@ -5,9 +5,9 @@ import java.util.List;
 public class Group {
     private Integer id;
     private String name;
-    private List<Software> items;
+    private List<Item> items;
 
-    public Group(Integer id, String name, List<Software> items) {
+    public Group(Integer id, String name, List<Item> items) {
         this.id = id;
         this.name = name;
         this.items = items;
@@ -29,11 +29,11 @@ public class Group {
         this.name = name;
     }
 
-    public List<Software> getItems() {
+    public List<Item> getItems() {
         return items;
     }
 
-    public void setItems(List<Software> items) {
+    public void setItems(List<Item> items) {
         this.items = items;
     }
 }

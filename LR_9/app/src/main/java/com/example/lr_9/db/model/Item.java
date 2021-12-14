@@ -2,18 +2,19 @@ package com.example.lr_9.db.model;
 
 import java.time.LocalDate;
 
-public class Software implements GroupItem {
+public class Item implements GroupItem {
     Integer id;
+    Integer group_id;
     String name;
     String description;
     Long cost;
     String developmentDate;
     String version;
 
-    public Software() {
+    public Item() {
     }
 
-    public Software(Integer id, String name, String description, Long cost, String developmentDate, String version) {
+    public Item(Integer id, String name, String description, Long cost, String developmentDate, String version) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -70,6 +71,13 @@ public class Software implements GroupItem {
         this.version = version;
     }
 
+    public Integer getGroup_id() {
+        return group_id;
+    }
+
+    public void setGroup_id(Integer group_id) {
+        this.group_id = group_id;
+    }
 
     @Override
     public String toString() {

@@ -3,11 +3,9 @@ package com.example.lr_9;
 import androidx.annotation.NonNull;
 
 import com.example.lr_9.db.model.Group;
-import com.example.lr_9.db.model.GroupItem;
-import com.example.lr_9.db.model.Software;
+import com.example.lr_9.db.model.Item;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class ListData {
@@ -25,25 +23,25 @@ public class ListData {
         //    groupsTitles.add(new Group(3, "Текстовые редакторы", null));
     }
 
-    public List<Software> getIDES() {
+    public List<Item> getIDES() {
 
-        List<Software> ides = new ArrayList<>();
+        List<Item> ides = new ArrayList<>();
         ides.add(
-                new Software(null, "MS Visual Studio",
+                new Item(null, "MS Visual Studio",
                         "",
                         100L,
                         "November 23, 2021",
                         "21.1"
                 ));
         ides.add(
-                new Software(null, "Visual Studio Code",
+                new Item(null, "Visual Studio Code",
                         "Photoshop but better",
                         20L,
                         "December 14, 2021",
                         "1.11.6"
                 ));
         ides.add(
-                new Software(null, "Intellij IDEA",
+                new Item(null, "Intellij IDEA",
                         "",
                         20L,
                         "September 18, 2021",
@@ -55,24 +53,24 @@ public class ListData {
     }
 
     @NonNull
-    private List<Software> getGE() {
-        List<Software> graphic_editors = new ArrayList<>();
+    private List<Item> getGE() {
+        List<Item> graphic_editors = new ArrayList<>();
         graphic_editors.add(
-                new Software(null, "Adobe Photoshop 2021",
+                new Item(null, "Adobe Photoshop 2021",
                         "Adobe Photoshop is a raster graphics editor developed and published by Adobe Inc.",
                         100L,
                         "November 23, 2021",
                         "21.1"
                 ));
         graphic_editors.add(
-                new Software(null, "Clip Studio Paint",
+                new Item(null, "Clip Studio Paint",
                         "Photoshop but better",
                         20L,
                         "December 14, 2021",
                         "1.11.6"
                 ));
         graphic_editors.add(
-                new Software(null, "Gimp",
+                new Item(null, "Gimp",
                         "GIMP is a cross-platform image editor available for GNU/Linux, macOS, Windows and more operating systems. ",
                         20L,
                         "September 18, 2021",
