@@ -19,14 +19,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/editЕextGroupName"
+        <TextView
+            android:id="@+id/textViewGroupName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:text="ПО:" />
+            android:text="ПО:"
+            android:textColor="@color/purple_500"
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,17 +34,70 @@
             android:layout_marginEnd="10dp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textViewGroupName"
+            <EditText
+                android:id="@+id/editTextItemName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Навзание" />
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:text="Название" />
+
+            <EditText
+                android:id="@+id/editTextItemDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:text="Описание" />
+
+            <EditText
+                android:id="@+id/editTextItemDevDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:text="Дата выхода" />
+
+            <EditText
+                android:id="@+id/editTextItemVersion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:text="Версия" />
 
             <TextView
-                android:id="@+id/textViewGroupDescription"
+                android:id="@+id/textViewGroupName3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Описание" />
+                android:text="Цена:"
+                android:textColor="@color/material_on_background_disabled"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/editTextCost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/textViewGroupName4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Категория:"
+                android:textColor="@color/material_on_background_disabled"
+                android:textSize="14sp" />
+
+            <Spinner
+                android:id="@+id/spinnerGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp" />
 
         </LinearLayout>
 
