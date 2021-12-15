@@ -1,21 +1,23 @@
 package com.example.lr_9.db.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Item implements GroupItem {
+public class Item implements Serializable {
     Integer id;
     Integer group_id;
     String name;
     String description;
-    Long cost;
+    Integer cost;
     String developmentDate;
     String version;
 
     public Item() {
     }
 
-    public Item(Integer id, String name, String description, Long cost, String developmentDate, String version) {
+    public Item(Integer id, Integer group_id, String name, String description, Integer cost, String developmentDate, String version) {
         this.id = id;
+        this.group_id = group_id;
         this.name = name;
         this.description = description;
         this.cost = cost;
@@ -47,11 +49,11 @@ public class Item implements GroupItem {
         this.description = description;
     }
 
-    public Long getCost() {
+    public Integer getCost() {
         return cost;
     }
 
-    public void setCost(Long cost) {
+    public void setCost(Integer cost) {
         this.cost = cost;
     }
 
@@ -89,10 +91,5 @@ public class Item implements GroupItem {
                 ", developmentDate='" + developmentDate + '\'' +
                 ", version='" + version + '\'' +
                 '}';
-    }
-
-    @Override
-    public String getInfo() {
-        return getName();
     }
 }

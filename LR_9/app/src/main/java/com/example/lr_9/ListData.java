@@ -2,6 +2,7 @@ package com.example.lr_9;
 
 import androidx.annotation.NonNull;
 
+import com.example.lr_9.db.StaticDatabase;
 import com.example.lr_9.db.model.Group;
 import com.example.lr_9.db.model.Item;
 
@@ -10,72 +11,88 @@ import java.util.List;
 
 public class ListData {
     public ArrayList<Group> getGroups() {
-        return groupsTitles;
+        return StaticDatabase.getInstance().getGroups();
     }
 
-    private ArrayList<Group> groupsTitles;
+    boolean isInited = false;
 
     public ListData() {
-        groupsTitles = new ArrayList<>();
-
-        groupsTitles.add(new Group(1, "Графические редакторы", getGE()));
-        groupsTitles.add(new Group(2, "Среды разработки", getIDES()));
-        //    groupsTitles.add(new Group(3, "Текстовые редакторы", null));
+        if (!isInited) {
+            StaticDatabase.getInstance().insertOrUpdateGroup(new Group(1, "Графические редакторы"));
+            StaticDatabase.getInstance().insertOrUpdateGroup(new Group(2, "Среды разработки"));
+            insertIDES();
+            insertGE();
+        }
     }
 
-    public List<Item> getIDES() {
+    public void insertIDES() {
 
         List<Item> ides = new ArrayList<>();
         ides.add(
-                new Item(null, "MS Visual Studio",
+                new Item(1,
+                        1,
+                        "MS Visual Studio",
+
                         "",
-                        100L,
+                        10,
                         "November 23, 2021",
                         "21.1"
                 ));
         ides.add(
-                new Item(null, "Visual Studio Code",
+                new Item(2,
+                        1,
+                        "Visual Studio Code",
+
                         "Photoshop but better",
-                        20L,
+                        20,
                         "December 14, 2021",
                         "1.11.6"
                 ));
         ides.add(
-                new Item(null, "Intellij IDEA",
+                new Item(3,
+                        1,
+                        "Intellij IDEA",
                         "",
-                        20L,
+                        20,
                         "September 18, 2021",
                         " 2.10.28"
                 ));
 
+        ides.forEach(item -> StaticDatabase.getInstance().insertOrUpdateItem(item));
 
-        return ides;
     }
 
-    @NonNull
-    private List<Item> getGE() {
+
+    public void insertGE() {
         List<Item> graphic_editors = new ArrayList<>();
         graphic_editors.add(
-                new Item(null, "Adobe Photoshop 2021",
+                new Item(4,
+                        2,
+                        "Adobe Photoshop 2021",
                         "Adobe Photoshop is a raster graphics editor developed and published by Adobe Inc.",
-                        100L,
+                        100,
                         "November 23, 2021",
                         "21.1"
                 ));
         graphic_editors.add(
-                new Item(null, "Clip Studio Paint",
+                new Item(5,
+                        2,
+                        "Clip Studio Paint",
                         "Photoshop but better",
-                        20L,
+                        20,
                         "December 14, 2021",
                         "1.11.6"
                 ));
         graphic_editors.add(
-                new Item(null, "Gimp",
+                new Item(6,
+                        2,
+                        "Gimp",
                         "GIMP is a cross-platform image editor available for GNU/Linux, macOS, Windows and more operating systems. ",
-                        20L,
+                        20,
                         "September 18, 2021",
                         " 2.10.28"
                 ));
-        return graphic_editors;
+        graphic_editors.forEach(item -> StaticDatabase.getInstance().insertOrUpdateItem(item));
+
     }
 }

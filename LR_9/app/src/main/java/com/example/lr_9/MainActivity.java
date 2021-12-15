@@ -5,6 +5,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 
+import com.example.lr_9.db.StaticDatabase;
 import com.example.lr_9.utils.MyFragmentPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
@@ -16,7 +17,7 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        StaticDatabase.init(this);
         initTabLayout();
 
     }
