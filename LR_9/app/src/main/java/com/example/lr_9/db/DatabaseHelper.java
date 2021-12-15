@@ -101,7 +101,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         content.put("devDate", software.getDevelopmentDate());
 
         String[] args = new String[]{software.getId().toString()};
-        getWritableDatabase().update(TABLE_GROUPS, content, "item_id = ?", args);
+        getWritableDatabase().update(TABLE_ITEMS, content, "item_id = ?", args);
     }
 
 
@@ -180,6 +180,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 group.setId(cursor.getInt(0));
                 group.setName(cursor.getString(1));
                 group.setItems(getItemsByGroup(group));
+                groups.add(group);
+            } while (cursor.moveToNext());
+        }
+        return groups;
+    }
+
+    public ArrayList<Group> getGroupsWithoutLists() {
+        ArrayList<Group> groups = new ArrayList<>();
+        Cursor cursor = getReadableDatabase().rawQuery("SELECT * FROM " + TABLE_GROUPS, null);
+        if (cursor.moveToFirst()) {
+            do {
+                Group group = new Group();
+                group.setId(cursor.getInt(0));
+                group.setName(cursor.getString(1));
                 groups.add(group);
             } while (cursor.moveToNext());
         }

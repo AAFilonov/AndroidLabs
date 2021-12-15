@@ -19,14 +19,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/editTextTextPersonName"
+        <TextView
+            android:id="@+id/textViewGroupName2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:text="Группа:" />
+            android:text="Категория:"
+            android:textColor="@color/purple_500"
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,11 +34,14 @@
             android:layout_marginEnd="10dp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textViewGroupName"
+            <EditText
+                android:id="@+id/editЕextGroupName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Навзание" />
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:text="Название" />
 
         </LinearLayout>
 
