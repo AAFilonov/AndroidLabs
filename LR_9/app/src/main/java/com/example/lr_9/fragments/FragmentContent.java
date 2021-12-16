@@ -1,16 +1,14 @@
 package com.example.lr_9.fragments;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -20,14 +18,17 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import com.example.lr_9.ItemFormActivity;
 import com.example.lr_9.ListData;
+import com.example.lr_9.db.StaticDatabase;
+import com.example.lr_9.db.model.Item;
 import com.example.lr_9.utils.ExpandableItemListAdapter;
 import com.example.lr_9.R;
 
 public class FragmentContent extends Fragment {
     public static final String ARG_PAGE = "ARG_PAGE";
-    public static final int IDM_DEL = 101;
-    public static final int IDM_EDIT = 102;
+    public static final int ITEM_DEL = 101;
+    public static final int ITEM_EDIT = 102;
 
     private int mPage;
     private int SelectedItemId;
@@ -76,22 +77,26 @@ public class FragmentContent extends Fragment {
 
         if (obj instanceof LinearLayout) {
             String textId = (String) ((TextView) obj.findViewById(R.id.textId)).getText();
-            SelectedItemId = Integer.valueOf(textId);
+            SelectedItemId = Integer.parseInt(textId);
+            menu.setHeaderTitle("Элемент "+SelectedItemId);
+
+            menu.add(Menu.NONE, ITEM_DEL, Menu.NONE, "Удалить");
+            menu.add(Menu.NONE, ITEM_EDIT, Menu.NONE, "Редактировать");
         }
-        menu.add(Menu.NONE, IDM_DEL, Menu.NONE, "Удалить");
-        menu.add(Menu.NONE, IDM_EDIT, Menu.NONE, "Редактировать");
+
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         CharSequence message;
         switch (item.getItemId()) {
-            case IDM_DEL:
-                message = "Выбран пункт Удалить итем "+SelectedItemId;
-
+            case ITEM_DEL:
+                message = "Выбран пункт удалить элемент' "+SelectedItemId;
+                deleteItem(SelectedItemId);
                 break;
-            case IDM_EDIT:
-                message = "Выбран пункт Редактировать итем "+SelectedItemId;
+            case ITEM_EDIT:
+                message = "Выбран пункт редактировать элемент "+SelectedItemId;
+                updateItem(SelectedItemId);
                 break;
             default:
                 return super.onContextItemSelected(item);
@@ -100,5 +105,19 @@ public class FragmentContent extends Fragment {
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
         return true;
+    }
+
+    private void deleteItem(int selectedItemId) {
+        StaticDatabase.getInstance().deleteItem(selectedItemId);
+        getActivity().recreate();
+    }
+
+    private void updateItem(int selectedItemId) {
+        Intent groupFormActivity = new Intent(getActivity(), ItemFormActivity.class);
+
+        groupFormActivity.putExtra(Item.class.getSimpleName(), StaticDatabase.getInstance().getItem(selectedItemId));
+        startActivity(groupFormActivity);
+
+
     }
 }

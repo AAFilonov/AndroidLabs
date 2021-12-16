@@ -14,7 +14,7 @@ public class ListData {
         return StaticDatabase.getInstance().getGroups();
     }
 
-    boolean isInited = false;
+    static boolean isInited = false;
 
     public ListData() {
         if (!isInited) {
@@ -22,6 +22,7 @@ public class ListData {
             StaticDatabase.getInstance().insertOrUpdateGroup(new Group(2, "Среды разработки"));
             insertIDES();
             insertGE();
+            isInited=true;
         }
     }
 

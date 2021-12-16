@@ -17,8 +17,8 @@ public class GroupFormActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        current = new Group();
         super.onCreate(savedInstanceState);
+        current = new Group();
         setContentView(R.layout.activity_group_form);
 
         ((Button) findViewById(R.id.buttonGroupCancel)).setOnClickListener(this::handleCancel);
@@ -30,7 +30,8 @@ public class GroupFormActivity extends AppCompatActivity {
         EditText name = findViewById(R.id.editЕextGroupName);
         current.setName(name.getText().toString());
         StaticDatabase.getInstance().insertGroup(current);
-        Toast.makeText(this, "Категория успешно сохранена", Toast.LENGTH_LONG);
+        Toast.makeText(this, "Подкатегория успешно сохранена", Toast.LENGTH_LONG).show();
+
         handleCancel(null);
     }
 

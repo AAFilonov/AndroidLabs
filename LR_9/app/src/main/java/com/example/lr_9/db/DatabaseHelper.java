@@ -121,7 +121,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             insertItem(item);
     }
 
-    private Item getItem(Integer id) {
+    public Item getItem(Integer id) {
         Item item = null;
         String[] args = new String[]{id.toString()};
 
@@ -218,6 +218,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         return items;
+    }
+
+    public void deleteItem(Integer selectedItemId) {
+        Item item = null;
+        String[] args = new String[]{selectedItemId.toString()};
+        int aa = getWritableDatabase().delete(TABLE_ITEMS ,"item_id = ?", args);
+        System.out.println("Deleted "+aa+" items");
     }
 }
 

@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.example.lr_9.db.StaticDatabase;
 import com.example.lr_9.db.model.Group;
@@ -22,19 +21,37 @@ import java.util.stream.Collectors;
 public class ItemFormActivity extends AppCompatActivity {
 
     Item current;
+    Boolean isUpdate = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_form);
-        ((Button) findViewById(R.id.buttonItemCancel)).setOnClickListener(this::handleCancel);
-        ((Button) findViewById(R.id.buttonItemReady)).setOnClickListener(this::handleSave);
-        current = new Item();
+        Bundle args = getIntent().getExtras();
+        if (args != null)
+            setUpdatableItem(args);
+        else
+            current = new Item();
+
+
+        findViewById(R.id.buttonItemCancel).setOnClickListener(this::handleCancel);
+        findViewById(R.id.buttonItemReady).setOnClickListener(this::handleSave);
+
         Spinner spinnerGroup = findViewById(R.id.spinnerGroup);
         ArrayList<Group> groups = StaticDatabase.getInstance().getGroupsWithoutLists();
         List<String> groupsTitles = groups.stream().map(group -> group.getName()).collect(Collectors.toList());
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, groupsTitles);
         spinnerGroup.setAdapter(adapter);
+    }
+
+    private void setUpdatableItem(Bundle args) {
+        current = (Item) args.getSerializable(Item.class.getSimpleName());
+        ((EditText) findViewById(R.id.editTextItemName)).setText(current.getName());
+        ((EditText) findViewById(R.id.editTextItemDescription)).setText(current.getDescription());
+        ((EditText) findViewById(R.id.editTextItemVersion)).setText(current.getVersion());
+        ((EditText) findViewById(R.id.editTextCost)).setText(current.getCost().toString());
+        ((Spinner) findViewById(R.id.spinnerGroup)).setSelection(current.getGroup_id() - 1);
+        isUpdate = true;
     }
 
 
@@ -48,12 +65,15 @@ public class ItemFormActivity extends AppCompatActivity {
         current.setCost(Integer.valueOf(
                 ((EditText) findViewById(R.id.editTextCost)).getText().toString()));
         Spinner spinnerGroup = findViewById(R.id.spinnerGroup);
-        int groupId = spinnerGroup.getSelectedItemPosition()+1;
+        int groupId = spinnerGroup.getSelectedItemPosition() + 1;
         current.setGroup_id(groupId);
-        StaticDatabase.getInstance().insertItem(current);
-        Toast.makeText(this, "ПО успешно сохранено", Toast.LENGTH_LONG);
-        ((Button) findViewById(R.id.buttonItemReady)).setEnabled(false);
-        //handleCancel(null);
+        if (isUpdate)
+            StaticDatabase.getInstance().updateItem(current);
+        else
+            StaticDatabase.getInstance().insertItem(current);
+
+
+        handleCancel(null);
     }
 
     private void handleCancel(View view) {
