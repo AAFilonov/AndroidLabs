@@ -12,12 +12,12 @@ import com.example.lr_9.db.model.Group;
 
 import java.util.List;
 
-public class ListAdapter extends BaseExpandableListAdapter {
+public class ExpandableItemListAdapter extends BaseExpandableListAdapter {
     private final List<Group> groups;
 
     private final Context mContext;
 
-    public ListAdapter(List<Group> groups, Context context) {
+    public ExpandableItemListAdapter(List<Group> groups, Context context) {
         this.groups = groups;
         this.mContext = context;
 
@@ -89,12 +89,13 @@ public class ListAdapter extends BaseExpandableListAdapter {
         TextView textViewCost = convertView.findViewById(R.id.cost);
         TextView textDevelopmentDate = convertView.findViewById(R.id.developmentDate);
         TextView textVersion = convertView.findViewById(R.id.version);
+        TextView textId = convertView.findViewById(R.id.textId);
         textViewName.setText("name: " + groups.get(groupPosition).getItems().get(childPosition).getName());
         textViewDescription.setText("description: " + groups.get(groupPosition).getItems().get(childPosition).getDescription());
         textViewCost.setText("cost: " + groups.get(groupPosition).getItems().get(childPosition).getCost());
         textDevelopmentDate.setText("development date: " + groups.get(groupPosition).getItems().get(childPosition).getDevelopmentDate());
         textVersion.setText("version: " + groups.get(groupPosition).getItems().get(childPosition).getVersion());
-
+        textId.setText(groups.get(groupPosition).getItems().get(childPosition).getId().toString());
 
         return convertView;
     }
