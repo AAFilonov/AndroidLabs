@@ -221,10 +221,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void deleteItem(Integer selectedItemId) {
-        Item item = null;
+
         String[] args = new String[]{selectedItemId.toString()};
-        int aa = getWritableDatabase().delete(TABLE_ITEMS ,"item_id = ?", args);
-        System.out.println("Deleted "+aa+" items");
+        int i = getWritableDatabase().delete(TABLE_ITEMS ,"item_id = ?", args);
+        System.out.println("Deleted "+i+" items");
+    }
+
+    public void deleteGroup(Integer selectedGroupId) {
+        String[] args = new String[]{selectedGroupId.toString()};
+        int i2 = getWritableDatabase().delete(TABLE_ITEMS ,"group_id = ?", args);
+        int i = getWritableDatabase().delete(TABLE_GROUPS ,"group_id = ?", args);
+        System.out.println("Deleted "+i+" groups");
+        System.out.println("Deleted "+i2+" items");
     }
 }
 

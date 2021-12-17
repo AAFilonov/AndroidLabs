@@ -14,23 +14,44 @@ import com.example.lr_9.db.model.Group;
 
 public class GroupFormActivity extends AppCompatActivity {
     Group current;
+    Boolean isUpdate = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        current = new Group();
         setContentView(R.layout.activity_group_form);
 
-        ((Button) findViewById(R.id.buttonGroupCancel)).setOnClickListener(this::handleCancel);
-        ((Button) findViewById(R.id.buttonGroupReady)).setOnClickListener(this::handleSave);
+        Bundle args = getIntent().getExtras();
+        if (args != null)
+            setUpdatableGroup(args);
+        else
+            current = new Group();
+
+
+        findViewById(R.id.buttonGroupCancel).setOnClickListener(this::handleCancel);
+        findViewById(R.id.buttonGroupReady).setOnClickListener(this::handleSave);
+
+
+    }
+
+    private void setUpdatableGroup(Bundle args) {
+        current = (Group) args.getSerializable(Group.class.getSimpleName());
+        EditText editName = this.findViewById(R.id.editTextGroupName);
+        editName.setText(current.getName());
+        isUpdate = true;
     }
 
     private void handleSave(View view) {
 
-        EditText name = findViewById(R.id.editЕextGroupName);
+        EditText name = findViewById(R.id.editTextGroupName);
         current.setName(name.getText().toString());
-        StaticDatabase.getInstance().insertGroup(current);
-        Toast.makeText(this, "Подкатегория успешно сохранена", Toast.LENGTH_LONG).show();
+        if (isUpdate)
+            StaticDatabase.getInstance().updateGroup(current);
+        else
+            StaticDatabase.getInstance().insertGroup(current);
+
+
+        Toast.makeText(this, "Категория успешно сохранена", Toast.LENGTH_LONG).show();
 
         handleCancel(null);
     }

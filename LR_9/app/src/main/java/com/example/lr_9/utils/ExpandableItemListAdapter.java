@@ -70,8 +70,10 @@ public class ExpandableItemListAdapter extends BaseExpandableListAdapter {
 
 
         TextView textGroup = convertView.findViewById(R.id.textGroup);
+        TextView textGroupId = convertView.findViewById(R.id.textGroupId);
         textGroup.setText(groups.get(groupPosition).getName());
-
+        textGroupId.setText(groups.get(groupPosition).getId().toString());
+        textGroupId.setVisibility(View.INVISIBLE);
         return convertView;
 
     }
@@ -89,14 +91,14 @@ public class ExpandableItemListAdapter extends BaseExpandableListAdapter {
         TextView textViewCost = convertView.findViewById(R.id.cost);
         TextView textDevelopmentDate = convertView.findViewById(R.id.developmentDate);
         TextView textVersion = convertView.findViewById(R.id.version);
-        TextView textId = convertView.findViewById(R.id.textId);
+        TextView textId = convertView.findViewById(R.id.textItemId);
         textViewName.setText("name: " + groups.get(groupPosition).getItems().get(childPosition).getName());
         textViewDescription.setText("description: " + groups.get(groupPosition).getItems().get(childPosition).getDescription());
         textViewCost.setText("cost: " + groups.get(groupPosition).getItems().get(childPosition).getCost());
         textDevelopmentDate.setText("development date: " + groups.get(groupPosition).getItems().get(childPosition).getDevelopmentDate());
         textVersion.setText("version: " + groups.get(groupPosition).getItems().get(childPosition).getVersion());
         textId.setText(groups.get(groupPosition).getItems().get(childPosition).getId().toString());
-
+        textId.setVisibility(View.INVISIBLE);
         return convertView;
     }
 

@@ -18,9 +18,11 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import com.example.lr_9.GroupFormActivity;
 import com.example.lr_9.ItemFormActivity;
 import com.example.lr_9.ListData;
 import com.example.lr_9.db.StaticDatabase;
+import com.example.lr_9.db.model.Group;
 import com.example.lr_9.db.model.Item;
 import com.example.lr_9.utils.ExpandableItemListAdapter;
 import com.example.lr_9.R;
@@ -29,9 +31,12 @@ public class FragmentContent extends Fragment {
     public static final String ARG_PAGE = "ARG_PAGE";
     public static final int ITEM_DEL = 101;
     public static final int ITEM_EDIT = 102;
+    public static final int GROUP_DEL = 103;
+    public static final int GROUP_EDIT = 104;
 
     private int mPage;
     private int SelectedItemId;
+    private int SelectedGroupId;
     private ListData listData = new ListData();
 
     public static FragmentContent newInstance(int page) {
@@ -75,13 +80,21 @@ public class FragmentContent extends Fragment {
         ExpandableListView.ExpandableListContextMenuInfo acmi = (ExpandableListView.ExpandableListContextMenuInfo) menuInfo;
         View obj = (View) acmi.targetView;
 
-        if (obj instanceof LinearLayout) {
-            String textId = (String) ((TextView) obj.findViewById(R.id.textId)).getText();
+
+        if (obj.getId() == R.id.itemLayout) {
+            String textId = (String) ((TextView) obj.findViewById(R.id.textItemId)).getText();
             SelectedItemId = Integer.parseInt(textId);
-            menu.setHeaderTitle("Элемент "+SelectedItemId);
+            menu.setHeaderTitle("Элемент " + SelectedItemId);
 
             menu.add(Menu.NONE, ITEM_DEL, Menu.NONE, "Удалить");
             menu.add(Menu.NONE, ITEM_EDIT, Menu.NONE, "Редактировать");
+        } else if (obj.getId() == R.id.groupLayout) {
+            String textId = (String) ((TextView) obj.findViewById(R.id.textGroupId)).getText();
+            SelectedGroupId = Integer.parseInt(textId);
+            menu.setHeaderTitle("Категория " + SelectedGroupId);
+
+            menu.add(Menu.NONE, GROUP_DEL, Menu.NONE, "Удалить");
+            menu.add(Menu.NONE, GROUP_EDIT, Menu.NONE, "Редактировать");
         }
 
     }
@@ -91,12 +104,20 @@ public class FragmentContent extends Fragment {
         CharSequence message;
         switch (item.getItemId()) {
             case ITEM_DEL:
-                message = "Выбран пункт удалить элемент' "+SelectedItemId;
+                message = "Выбран пункт удалить элемент' " + SelectedItemId;
                 deleteItem(SelectedItemId);
                 break;
             case ITEM_EDIT:
-                message = "Выбран пункт редактировать элемент "+SelectedItemId;
+                message = "Выбран пункт редактировать элемент " + SelectedItemId;
                 updateItem(SelectedItemId);
+                break;
+            case GROUP_DEL:
+                message = "Выбран пункт редактировать группу " + SelectedGroupId;
+                deleteGroup(SelectedGroupId);
+                break;
+            case GROUP_EDIT:
+                message = "Выбран пункт редактировать группу " + SelectedGroupId;
+                updateGroup(SelectedGroupId);
                 break;
             default:
                 return super.onContextItemSelected(item);
@@ -111,11 +132,21 @@ public class FragmentContent extends Fragment {
         StaticDatabase.getInstance().deleteItem(selectedItemId);
         getActivity().recreate();
     }
+    private void deleteGroup(int selectedItemId) {
+        StaticDatabase.getInstance().deleteGroup(selectedItemId);
+        getActivity().recreate();
+    }
 
     private void updateItem(int selectedItemId) {
         Intent groupFormActivity = new Intent(getActivity(), ItemFormActivity.class);
-
         groupFormActivity.putExtra(Item.class.getSimpleName(), StaticDatabase.getInstance().getItem(selectedItemId));
+        startActivity(groupFormActivity);
+
+
+    }
+    private void updateGroup(int selectedItemId) {
+        Intent groupFormActivity = new Intent(getActivity(), GroupFormActivity.class);
+        groupFormActivity.putExtra(Group.class.getSimpleName(), StaticDatabase.getInstance().getGroup(selectedItemId));
         startActivity(groupFormActivity);
 
 
