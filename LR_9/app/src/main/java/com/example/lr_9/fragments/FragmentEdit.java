@@ -11,8 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
-import com.example.lr_9.GroupFormActivity;
-import com.example.lr_9.ItemFormActivity;
+import com.example.lr_9.activity.GroupFormActivity;
+import com.example.lr_9.activity.ItemFormActivity;
 import com.example.lr_9.R;
 
 public class FragmentEdit extends Fragment {

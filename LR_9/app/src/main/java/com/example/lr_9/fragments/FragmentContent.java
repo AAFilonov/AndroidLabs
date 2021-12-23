@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,13 +17,13 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
-import com.example.lr_9.GroupFormActivity;
-import com.example.lr_9.ItemFormActivity;
+import com.example.lr_9.activity.GroupFormActivity;
+import com.example.lr_9.activity.ItemFormActivity;
 import com.example.lr_9.ListData;
 import com.example.lr_9.db.StaticDatabase;
 import com.example.lr_9.db.model.Group;
 import com.example.lr_9.db.model.Item;
-import com.example.lr_9.utils.ExpandableItemListAdapter;
+import com.example.lr_9.utils.GroupsListAdapter;
 import com.example.lr_9.R;
 
 public class FragmentContent extends Fragment {
@@ -66,8 +65,9 @@ public class FragmentContent extends Fragment {
 
         ConstraintLayout layout = (ConstraintLayout) view;
         ExpandableListView listView = (ExpandableListView) layout.getChildAt(0);
-        ExpandableItemListAdapter adapter = new ExpandableItemListAdapter(listData.getGroups(), getContext());
+        GroupsListAdapter adapter = new GroupsListAdapter(listData.getGroups(), getContext());
         registerForContextMenu(listView);
+
 
         listView.setAdapter(adapter);
         return view;
@@ -133,7 +133,7 @@ public class FragmentContent extends Fragment {
         getActivity().recreate();
     }
     private void deleteGroup(int selectedItemId) {
-        StaticDatabase.getInstance().deleteGroup(selectedItemId);
+        StaticDatabase.getInstance().deleteGroupCascade(selectedItemId);
         getActivity().recreate();
     }
 

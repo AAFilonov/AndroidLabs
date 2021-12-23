@@ -1,4 +1,4 @@
-package com.example.lr_9;
+package com.example.lr_9.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,10 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.example.lr_9.R;
 import com.example.lr_9.db.StaticDatabase;
 import com.example.lr_9.db.model.Group;
 import com.example.lr_9.db.model.Item;
@@ -50,7 +50,7 @@ public class ItemFormActivity extends AppCompatActivity {
         ((EditText) findViewById(R.id.editTextItemDescription)).setText(current.getDescription());
         ((EditText) findViewById(R.id.editTextItemVersion)).setText(current.getVersion());
         ((EditText) findViewById(R.id.editTextCost)).setText(current.getCost().toString());
-        ((Spinner) findViewById(R.id.spinnerGroup)).setSelection(current.getGroup_id() - 1);
+        ((Spinner) findViewById(R.id.spinnerGroup)).setSelection(current.getSubgroup_id() - 1);
         isUpdate = true;
     }
 
@@ -66,7 +66,7 @@ public class ItemFormActivity extends AppCompatActivity {
                 ((EditText) findViewById(R.id.editTextCost)).getText().toString()));
         Spinner spinnerGroup = findViewById(R.id.spinnerGroup);
         int groupId = spinnerGroup.getSelectedItemPosition() + 1;
-        current.setGroup_id(groupId);
+        current.setSubgroup_id(groupId);
         if (isUpdate)
             StaticDatabase.getInstance().updateItem(current);
         else

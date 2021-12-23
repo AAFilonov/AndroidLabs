@@ -2,6 +2,8 @@ package com.example.lr_9.db;
 
 import android.content.ContextWrapper;
 
+import com.example.lr_9.db.helpers.DatabaseHelper;
+
 public class StaticDatabase {
     private static DatabaseHelper db;
     private static boolean isInited = false;

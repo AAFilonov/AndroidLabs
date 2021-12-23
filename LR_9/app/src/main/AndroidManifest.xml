@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LR_9">
         <activity
-            android:name=".GroupFormActivity"
+            android:name=".activity.GroupFormActivity"
             android:exported="true" />
         <activity
-            android:name=".ItemFormActivity"
+            android:name=".activity.ItemFormActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

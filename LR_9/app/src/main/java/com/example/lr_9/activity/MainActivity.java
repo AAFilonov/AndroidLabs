@@ -1,10 +1,11 @@
-package com.example.lr_9;
+package com.example.lr_9.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 
+import com.example.lr_9.R;
 import com.example.lr_9.db.StaticDatabase;
 import com.example.lr_9.utils.MyFragmentPagerAdapter;
 import com.google.android.material.tabs.TabLayout;

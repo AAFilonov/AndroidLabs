@@ -1,11 +1,10 @@
 package com.example.lr_9.db.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 public class Item implements Serializable {
     Integer id;
-    Integer group_id;
+    Integer subgroup_id;
     String name;
     String description;
     Integer cost;
@@ -15,9 +14,9 @@ public class Item implements Serializable {
     public Item() {
     }
 
-    public Item(Integer id, Integer group_id, String name, String description, Integer cost, String developmentDate, String version) {
+    public Item(Integer id, Integer subgroup_id, String name, String description, Integer cost, String developmentDate, String version) {
         this.id = id;
-        this.group_id = group_id;
+        this.subgroup_id = subgroup_id;
         this.name = name;
         this.description = description;
         this.cost = cost;
@@ -73,12 +72,12 @@ public class Item implements Serializable {
         this.version = version;
     }
 
-    public Integer getGroup_id() {
-        return group_id;
+    public Integer getSubgroup_id() {
+        return subgroup_id;
     }
 
-    public void setGroup_id(Integer group_id) {
-        this.group_id = group_id;
+    public void setSubgroup_id(Integer subgroup_id) {
+        this.subgroup_id = subgroup_id;
     }
 
     @Override

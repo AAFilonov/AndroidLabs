@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import com.example.lr_9.db.StaticDatabase;
 import com.example.lr_9.db.model.Group;
 import com.example.lr_9.db.model.Item;
+import com.example.lr_9.db.model.Subgroup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +19,12 @@ public class ListData {
 
     public ListData() {
         if (!isInited) {
-            StaticDatabase.getInstance().insertOrUpdateGroup(new Group(1, "Графические редакторы"));
-            StaticDatabase.getInstance().insertOrUpdateGroup(new Group(2, "Среды разработки"));
+            StaticDatabase.getInstance().insertOrUpdateGroup(new Group(1, "Десктопное ПО"));
+            StaticDatabase.getInstance().insertOrUpdateSubgroup(new Subgroup(1, "Графические редакторы", 1));
+            StaticDatabase.getInstance().insertOrUpdateSubgroup(new Subgroup(2, "Среды разработки", 1));
             insertIDES();
             insertGE();
-            isInited=true;
+            isInited = true;
         }
     }
 

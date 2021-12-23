@@ -3,24 +3,26 @@ package com.example.lr_9.db.model;
 import java.io.Serializable;
 import java.util.List;
 
-public class Group implements Serializable {
+public class Subgroup implements Serializable {
     private Integer id;
+    private Integer group_id;
     private String name;
-    private List<Subgroup> items;
+    private List<Item> items;
 
-    public Group(){
+    public Subgroup(){
 
     }
 
-    public Group(Integer id, String name, List<Subgroup> items) {
+    public Subgroup(Integer id, String name, List<Item> items) {
         this.id = id;
         this.name = name;
         this.items = items;
     }
 
-    public Group(Integer id, String name) {
+    public Subgroup(Integer id, String name,Integer group_id) {
         this.id = id;
         this.name = name;
+        this.group_id = group_id;
     }
 
     public Integer getId() {
@@ -31,6 +33,14 @@ public class Group implements Serializable {
         this.id = id;
     }
 
+    public Integer getGroup_id() {
+        return group_id;
+    }
+
+    public void setGroup_id(Integer group_id) {
+        this.group_id = group_id;
+    }
+
     public String getName() {
         return name;
     }
@@ -39,11 +49,11 @@ public class Group implements Serializable {
         this.name = name;
     }
 
-    public List<Subgroup> getItems() {
+    public List<Item> getItems() {
         return items;
     }
 
-    public void setItems(List<Subgroup> items) {
+    public void setItems(List<Item> items) {
         this.items = items;
     }
 }

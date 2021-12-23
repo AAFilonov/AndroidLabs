@@ -8,17 +8,17 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
 import com.example.lr_9.R;
-import com.example.lr_9.db.model.Group;
+import com.example.lr_9.db.model.Subgroup;
 
 import java.util.List;
 
-public class ExpandableItemListAdapter extends BaseExpandableListAdapter {
-    private final List<Group> groups;
+public class SubgroupsListAdapter extends BaseExpandableListAdapter {
+    private final List<Subgroup> subgroups;
 
     private final Context mContext;
 
-    public ExpandableItemListAdapter(List<Group> groups, Context context) {
-        this.groups = groups;
+    public SubgroupsListAdapter(List<Subgroup> subgroups, Context context) {
+        this.subgroups = subgroups;
         this.mContext = context;
 
 
@@ -26,22 +26,22 @@ public class ExpandableItemListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getGroupCount() {
-        return groups.size();
+        return subgroups.size();
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return groups.get(groupPosition).getItems().size();
+        return subgroups.get(groupPosition).getItems().size();
     }
 
     @Override
     public Object getGroup(int groupPosition) {
-        return groups.get(groupPosition);
+        return subgroups.get(groupPosition);
     }
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return groups.get(groupPosition).getItems().get(childPosition);
+        return subgroups.get(groupPosition).getItems().get(childPosition);
     }
 
     @Override
@@ -65,14 +65,14 @@ public class ExpandableItemListAdapter extends BaseExpandableListAdapter {
 
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.list_group, null);
+            convertView = inflater.inflate(R.layout.list_subgroup, null);
         }
 
 
-        TextView textGroup = convertView.findViewById(R.id.textGroup);
-        TextView textGroupId = convertView.findViewById(R.id.textGroupId);
-        textGroup.setText(groups.get(groupPosition).getName());
-        textGroupId.setText(groups.get(groupPosition).getId().toString());
+        TextView textGroup = convertView.findViewById(R.id.textSubgroupName);
+        TextView textGroupId = convertView.findViewById(R.id.textSubgroupId);
+        textGroup.setText("     "+subgroups.get(groupPosition).getName());
+        textGroupId.setText(subgroups.get(groupPosition).getId().toString());
         textGroupId.setVisibility(View.INVISIBLE);
         return convertView;
 
@@ -83,7 +83,7 @@ public class ExpandableItemListAdapter extends BaseExpandableListAdapter {
                              View convertView, ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.list_item, null);
+            convertView = inflater.inflate(R.layout.item_item, null);
         }
 
         TextView textViewName = convertView.findViewById(R.id.name);
@@ -92,12 +92,12 @@ public class ExpandableItemListAdapter extends BaseExpandableListAdapter {
         TextView textDevelopmentDate = convertView.findViewById(R.id.developmentDate);
         TextView textVersion = convertView.findViewById(R.id.version);
         TextView textId = convertView.findViewById(R.id.textItemId);
-        textViewName.setText("name: " + groups.get(groupPosition).getItems().get(childPosition).getName());
-        textViewDescription.setText("description: " + groups.get(groupPosition).getItems().get(childPosition).getDescription());
-        textViewCost.setText("cost: " + groups.get(groupPosition).getItems().get(childPosition).getCost());
-        textDevelopmentDate.setText("development date: " + groups.get(groupPosition).getItems().get(childPosition).getDevelopmentDate());
-        textVersion.setText("version: " + groups.get(groupPosition).getItems().get(childPosition).getVersion());
-        textId.setText(groups.get(groupPosition).getItems().get(childPosition).getId().toString());
+        textViewName.setText("name: " + subgroups.get(groupPosition).getItems().get(childPosition).getName());
+        textViewDescription.setText("description: " + subgroups.get(groupPosition).getItems().get(childPosition).getDescription());
+        textViewCost.setText("cost: " + subgroups.get(groupPosition).getItems().get(childPosition).getCost());
+        textDevelopmentDate.setText("development date: " + subgroups.get(groupPosition).getItems().get(childPosition).getDevelopmentDate());
+        textVersion.setText("version: " + subgroups.get(groupPosition).getItems().get(childPosition).getVersion());
+        textId.setText(subgroups.get(groupPosition).getItems().get(childPosition).getId().toString());
         textId.setVisibility(View.INVISIBLE);
         return convertView;
     }
