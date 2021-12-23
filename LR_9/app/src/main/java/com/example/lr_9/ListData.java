@@ -20,10 +20,15 @@ public class ListData {
     public ListData() {
         if (!isInited) {
             StaticDatabase.getInstance().insertOrUpdateGroup(new Group(1, "Десктопное ПО"));
+            StaticDatabase.getInstance().insertOrUpdateGroup(new Group(2, "Мобильное ПО"));
             StaticDatabase.getInstance().insertOrUpdateSubgroup(new Subgroup(1, "Графические редакторы", 1));
             StaticDatabase.getInstance().insertOrUpdateSubgroup(new Subgroup(2, "Среды разработки", 1));
+            StaticDatabase.getInstance().insertOrUpdateSubgroup(new Subgroup(3, "Утилиты", 2));
+            StaticDatabase.getInstance().insertOrUpdateSubgroup(new Subgroup(4, "Игры", 2));
             insertIDES();
             insertGE();
+            insertMOBIL1();
+            insertMOBIL2();
             isInited = true;
         }
     }
@@ -95,6 +100,54 @@ public class ListData {
                         "September 18, 2021",
                         " 2.10.28"
                 ));
+        graphic_editors.forEach(item -> StaticDatabase.getInstance().insertOrUpdateItem(item));
+
+    }
+    public void insertMOBIL1() {
+        List<Item> graphic_editors = new ArrayList<>();
+        graphic_editors.add(
+                new Item(7,
+                        3,
+                        "Сx File Explorer",
+                        "File explorer",
+                        100,
+                        "November 23, 2021",
+                        "21.1"
+                ));
+        graphic_editors.add(
+                new Item(8,
+                        3,
+                        "Vaku очистка и оптимизация",
+                        "Очистка памяти",
+                        100,
+                        "November 23, 2021",
+                        "21.1"
+                ));
+
+        graphic_editors.forEach(item -> StaticDatabase.getInstance().insertOrUpdateItem(item));
+
+    }
+    public void insertMOBIL2() {
+        List<Item> graphic_editors = new ArrayList<>();
+        graphic_editors.add(
+                new Item(9,
+                        4,
+                        "Castle crashers",
+                        "Популярная игра",
+                        100,
+                        "November 23, 2021",
+                        "21.1"
+                ));
+        graphic_editors.add(
+                new Item(10,
+                        4,
+                        "Alchemy",
+                        "Алхимия",
+                        100,
+                        "November 23, 2021",
+                        "21.1"
+                ));
+
         graphic_editors.forEach(item -> StaticDatabase.getInstance().insertOrUpdateItem(item));
 
     }

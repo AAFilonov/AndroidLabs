@@ -1,5 +1,6 @@
 package com.example.lr_9.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -9,7 +10,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,11 +24,16 @@ import androidx.fragment.app.Fragment;
 import com.example.lr_9.activity.GroupFormActivity;
 import com.example.lr_9.activity.ItemFormActivity;
 import com.example.lr_9.ListData;
+
 import com.example.lr_9.db.StaticDatabase;
 import com.example.lr_9.db.model.Group;
 import com.example.lr_9.db.model.Item;
+import com.example.lr_9.db.model.Subgroup;
 import com.example.lr_9.utils.GroupsListAdapter;
 import com.example.lr_9.R;
+import com.example.lr_9.utils.SubgroupsListAdapter;
+
+import java.util.List;
 
 public class FragmentContent extends Fragment {
     public static final String ARG_PAGE = "ARG_PAGE";
@@ -32,6 +41,8 @@ public class FragmentContent extends Fragment {
     public static final int ITEM_EDIT = 102;
     public static final int GROUP_DEL = 103;
     public static final int GROUP_EDIT = 104;
+    private static final int SUBGROUP_DEL = 105;
+    public static final int SUBGROUP_EDIT = 106;
 
     private int mPage;
     private int SelectedItemId;
@@ -57,20 +68,47 @@ public class FragmentContent extends Fragment {
 
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_content, container, false);
 
 
-        ConstraintLayout layout = (ConstraintLayout) view;
-        ExpandableListView listView = (ExpandableListView) layout.getChildAt(0);
-        GroupsListAdapter adapter = new GroupsListAdapter(listData.getGroups(), getContext());
-        registerForContextMenu(listView);
+
+        LinearLayout layout = new LinearLayout(getContext());
+
+        layout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+
+        layout.setOrientation(LinearLayout.VERTICAL);
 
 
-        listView.setAdapter(adapter);
-        return view;
+        listData.getGroups().forEach(group -> {
+            List<Subgroup> items = group.getItems();
+            ExpandableListView listView = new ExpandableListView(getContext());
+            SubgroupsListAdapter adapter = new SubgroupsListAdapter(items, getContext());
+            registerForContextMenu(listView);
+            listView.setAdapter(adapter);
+            listView.setVisibility(View.GONE);
+
+            LinearLayout nameLayout = (LinearLayout) inflater.inflate(R.layout.item_group, container, false);
+            ((TextView) nameLayout.findViewById(R.id.textNameGroup)).setText(group.getName());
+            ((TextView) nameLayout.findViewById(R.id.textNameGroupId)).setText(group.getId().toString());
+            ((TextView) nameLayout.findViewById(R.id.textNameGroupId)).setVisibility(View.INVISIBLE);
+
+            nameLayout.setOnClickListener(view1 -> {
+                if (listView.getVisibility() == View.VISIBLE)
+                    listView.setVisibility(View.GONE);
+                else
+                    listView.setVisibility(View.VISIBLE);
+            });
+            layout.addView(nameLayout);
+            layout.addView(listView);
+
+        });
+
+
+        return layout;
     }
 
     @Override
@@ -95,6 +133,13 @@ public class FragmentContent extends Fragment {
 
             menu.add(Menu.NONE, GROUP_DEL, Menu.NONE, "Удалить");
             menu.add(Menu.NONE, GROUP_EDIT, Menu.NONE, "Редактировать");
+        } else if (obj.getId() == R.id.subgroupLayout) {
+            String textId = (String) ((TextView) obj.findViewById(R.id.textGroupId)).getText();
+            SelectedGroupId = Integer.parseInt(textId);
+            menu.setHeaderTitle("Подкатегория " + SelectedGroupId);
+
+            menu.add(Menu.NONE, SUBGROUP_DEL, Menu.NONE, "Удалить");
+            menu.add(Menu.NONE, SUBGROUP_EDIT, Menu.NONE, "Редактировать");
         }
 
     }
@@ -132,6 +177,7 @@ public class FragmentContent extends Fragment {
         StaticDatabase.getInstance().deleteItem(selectedItemId);
         getActivity().recreate();
     }
+
     private void deleteGroup(int selectedItemId) {
         StaticDatabase.getInstance().deleteGroupCascade(selectedItemId);
         getActivity().recreate();
@@ -144,6 +190,7 @@ public class FragmentContent extends Fragment {
 
 
     }
+
     private void updateGroup(int selectedItemId) {
         Intent groupFormActivity = new Intent(getActivity(), GroupFormActivity.class);
         groupFormActivity.putExtra(Group.class.getSimpleName(), StaticDatabase.getInstance().getGroup(selectedItemId));

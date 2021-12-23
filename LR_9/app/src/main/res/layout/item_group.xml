@@ -2,20 +2,20 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/groupLayout"
+    android:id="@+id/subgroupLayout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
-
     <TextView
-        android:id="@+id/textGroup"
+        android:id="@+id/textNameGroup"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="20dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        />
 
     <TextView
-        android:id="@+id/textGroupId"
+        android:id="@+id/textNameGroupId"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginStart="5dp"

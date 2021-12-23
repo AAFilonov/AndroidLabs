@@ -88,7 +88,7 @@ public class GroupsListAdapter extends BaseExpandableListAdapter {
         }
         ExpandableListView listView = convertView.findViewById(R.id.exListViewSubgroup);
         SubgroupsListAdapter adapter = new SubgroupsListAdapter(groups.get(groupPosition).getItems(), mContext);
-        listView.setOnChildClickListener(this::handleClick);
+
 
         listView.setAdapter(adapter);
 
