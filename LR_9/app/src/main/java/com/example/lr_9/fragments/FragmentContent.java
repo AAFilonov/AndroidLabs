@@ -47,6 +47,7 @@ public class FragmentContent extends Fragment {
     private int mPage;
     private int SelectedItemId;
     private int SelectedGroupId;
+    private int SelectedSubgroupId;
     private ListData listData = new ListData();
 
     public static FragmentContent newInstance(int page) {
@@ -134,9 +135,9 @@ public class FragmentContent extends Fragment {
             menu.add(Menu.NONE, GROUP_DEL, Menu.NONE, "Удалить");
             menu.add(Menu.NONE, GROUP_EDIT, Menu.NONE, "Редактировать");
         } else if (obj.getId() == R.id.subgroupLayout) {
-            String textId = (String) ((TextView) obj.findViewById(R.id.textGroupId)).getText();
-            SelectedGroupId = Integer.parseInt(textId);
-            menu.setHeaderTitle("Подкатегория " + SelectedGroupId);
+            String textId = (String) ((TextView) obj.findViewById(R.id.textSubgroupId)).getText();
+            SelectedSubgroupId = Integer.parseInt(textId);
+            menu.setHeaderTitle("Подкатегория " + SelectedSubgroupId);
 
             menu.add(Menu.NONE, SUBGROUP_DEL, Menu.NONE, "Удалить");
             menu.add(Menu.NONE, SUBGROUP_EDIT, Menu.NONE, "Редактировать");
@@ -157,11 +158,19 @@ public class FragmentContent extends Fragment {
                 updateItem(SelectedItemId);
                 break;
             case GROUP_DEL:
-                message = "Выбран пункт редактировать группу " + SelectedGroupId;
+                message = "Выбран пункт редактировать категорию " + SelectedGroupId;
                 deleteGroup(SelectedGroupId);
                 break;
             case GROUP_EDIT:
-                message = "Выбран пункт редактировать группу " + SelectedGroupId;
+                message = "Выбран пункт редактировать категорию " + SelectedGroupId;
+                updateGroup(SelectedGroupId);
+                break;
+            case SUBGROUP_DEL:
+                message = "Выбран пункт редактировать подкатегорию " + SelectedGroupId;
+                deleteGroup(SelectedGroupId);
+                break;
+            case SUBGROUP_EDIT:
+                message = "Выбран пункт редактировать подкатегорию " + SelectedGroupId;
                 updateGroup(SelectedGroupId);
                 break;
             default:
@@ -198,4 +207,5 @@ public class FragmentContent extends Fragment {
 
 
     }
+
 }
