@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.example.lr_9.activity.GroupFormActivity;
 import com.example.lr_9.activity.ItemFormActivity;
 import com.example.lr_9.R;
+import com.example.lr_9.activity.SubgroupFormActivity;
 
 public class FragmentEdit extends Fragment {
     public static final String ARG_PAGE = "ARG_PAGE";
@@ -46,6 +47,7 @@ public class FragmentEdit extends Fragment {
         ConstraintLayout layout = (ConstraintLayout) view;
         Button buttonAddGroup = (Button) layout.getViewById(R.id.buttonAddGroup);
         Button buttonAddItem = (Button) layout.getViewById(R.id.buttonAddItem);
+        Button buttonAddSubgroup = (Button) layout.getViewById(R.id.buttonAddSubgroup);
         buttonAddGroup.setOnClickListener(view1 -> {
             Intent groupFormActivity = new Intent(getActivity(), GroupFormActivity.class);
             startActivity(groupFormActivity);
@@ -53,6 +55,11 @@ public class FragmentEdit extends Fragment {
 
         buttonAddItem.setOnClickListener(view1 -> {
             Intent groupFormActivity = new Intent(getActivity(), ItemFormActivity.class);
+            startActivity(groupFormActivity);
+        });
+
+        buttonAddSubgroup.setOnClickListener(view1 -> {
+            Intent groupFormActivity = new Intent(getActivity(), SubgroupFormActivity.class);
             startActivity(groupFormActivity);
         });
         return view;

@@ -103,6 +103,7 @@ public class FragmentContent extends Fragment {
                 else
                     listView.setVisibility(View.VISIBLE);
             });
+            registerForContextMenu(nameLayout);
             layout.addView(nameLayout);
             layout.addView(listView);
 
@@ -115,34 +116,41 @@ public class FragmentContent extends Fragment {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenu.ContextMenuInfo menuInfo) {
-        ExpandableListView lv = (ExpandableListView) v;
-        ExpandableListView.ExpandableListContextMenuInfo acmi = (ExpandableListView.ExpandableListContextMenuInfo) menuInfo;
-        View obj = (View) acmi.targetView;
+
+        if (v instanceof ExpandableListView) {
+
+            ExpandableListView lv = (ExpandableListView) v;
+            ExpandableListView.ExpandableListContextMenuInfo acmi = (ExpandableListView.ExpandableListContextMenuInfo) menuInfo;
+            View obj = (View) acmi.targetView;
 
 
-        if (obj.getId() == R.id.itemLayout) {
-            String textId = (String) ((TextView) obj.findViewById(R.id.textItemId)).getText();
-            SelectedItemId = Integer.parseInt(textId);
-            menu.setHeaderTitle("Элемент " + SelectedItemId);
+            if (obj.getId() == R.id.itemLayout) {
+                String textId = (String) ((TextView) obj.findViewById(R.id.textItemId)).getText();
+                SelectedItemId = Integer.parseInt(textId);
+                menu.setHeaderTitle("Элемент " + SelectedItemId);
 
-            menu.add(Menu.NONE, ITEM_DEL, Menu.NONE, "Удалить");
-            menu.add(Menu.NONE, ITEM_EDIT, Menu.NONE, "Редактировать");
-        } else if (obj.getId() == R.id.groupLayout) {
-            String textId = (String) ((TextView) obj.findViewById(R.id.textGroupId)).getText();
+                menu.add(Menu.NONE, ITEM_DEL, Menu.NONE, "Удалить");
+                menu.add(Menu.NONE, ITEM_EDIT, Menu.NONE, "Редактировать");
+
+            } else if (obj.getId() == R.id.subgroupLayout) {
+                String textId = (String) ((TextView) obj.findViewById(R.id.textSubgroupId)).getText();
+                SelectedSubgroupId = Integer.parseInt(textId);
+                menu.setHeaderTitle("Подкатегория " + SelectedSubgroupId);
+
+                menu.add(Menu.NONE, SUBGROUP_DEL, Menu.NONE, "Удалить");
+                menu.add(Menu.NONE, SUBGROUP_EDIT, Menu.NONE, "Редактировать");
+            }
+        }
+        else {
+            LinearLayout lv = (LinearLayout) v;
+
+            String textId = (String) ((TextView) lv.findViewById(R.id.textNameGroupId)).getText();
             SelectedGroupId = Integer.parseInt(textId);
             menu.setHeaderTitle("Категория " + SelectedGroupId);
 
             menu.add(Menu.NONE, GROUP_DEL, Menu.NONE, "Удалить");
             menu.add(Menu.NONE, GROUP_EDIT, Menu.NONE, "Редактировать");
-        } else if (obj.getId() == R.id.subgroupLayout) {
-            String textId = (String) ((TextView) obj.findViewById(R.id.textSubgroupId)).getText();
-            SelectedSubgroupId = Integer.parseInt(textId);
-            menu.setHeaderTitle("Подкатегория " + SelectedSubgroupId);
-
-            menu.add(Menu.NONE, SUBGROUP_DEL, Menu.NONE, "Удалить");
-            menu.add(Menu.NONE, SUBGROUP_EDIT, Menu.NONE, "Редактировать");
         }
-
     }
 
     @Override
@@ -166,12 +174,12 @@ public class FragmentContent extends Fragment {
                 updateGroup(SelectedGroupId);
                 break;
             case SUBGROUP_DEL:
-                message = "Выбран пункт редактировать подкатегорию " + SelectedGroupId;
-                deleteGroup(SelectedGroupId);
+                message = "Выбран пункт редактировать подкатегорию " + SelectedSubgroupId;
+             //   deleteGroup(SelectedGroupId);
                 break;
             case SUBGROUP_EDIT:
-                message = "Выбран пункт редактировать подкатегорию " + SelectedGroupId;
-                updateGroup(SelectedGroupId);
+                message = "Выбран пункт редактировать подкатегорию " + SelectedSubgroupId;
+              //  updateGroup(SelectedGroupId);
                 break;
             default:
                 return super.onContextItemSelected(item);

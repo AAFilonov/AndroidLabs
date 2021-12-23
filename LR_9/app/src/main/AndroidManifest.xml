@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LR_9">
         <activity
+            android:name=".activity.SubgroupFormActivity"
+            android:exported="true" />
+        <activity
             android:name=".activity.GroupFormActivity"
             android:exported="true" />
         <activity

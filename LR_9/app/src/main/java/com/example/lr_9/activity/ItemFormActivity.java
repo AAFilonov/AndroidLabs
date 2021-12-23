@@ -13,6 +13,7 @@ import com.example.lr_9.R;
 import com.example.lr_9.db.StaticDatabase;
 import com.example.lr_9.db.model.Group;
 import com.example.lr_9.db.model.Item;
+import com.example.lr_9.db.model.Subgroup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ public class ItemFormActivity extends AppCompatActivity {
         findViewById(R.id.buttonItemReady).setOnClickListener(this::handleSave);
 
         Spinner spinnerGroup = findViewById(R.id.spinnerGroup);
-        ArrayList<Group> groups = StaticDatabase.getInstance().getGroupsWithoutLists();
+        ArrayList<Subgroup> groups = StaticDatabase.getInstance().getSubgroups();
         List<String> groupsTitles = groups.stream().map(group -> group.getName()).collect(Collectors.toList());
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, groupsTitles);
         spinnerGroup.setAdapter(adapter);

@@ -293,6 +293,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return groupHelper.getGroupsWithoutLists();
     }
 
+    public ArrayList<Subgroup> getSubgroups() {
+
+        ArrayList<Subgroup> groups = new ArrayList<>();
+        Cursor cursor =getReadableDatabase().rawQuery("SELECT * FROM " + TABLE_SUBGROUPS, null);
+        if (cursor.moveToFirst()) {
+            do {
+                Subgroup group = new Subgroup();
+                group.setId(cursor.getInt(0));
+                group.setName(cursor.getString(1));
+                group.setGroup_id(cursor.getInt(2));
+                groups.add(group);
+            } while (cursor.moveToNext());
+        }
+        return groups;
+    }
 }
 
 
