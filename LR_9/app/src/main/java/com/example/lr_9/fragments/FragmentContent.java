@@ -25,6 +25,7 @@ import com.example.lr_9.activity.GroupFormActivity;
 import com.example.lr_9.activity.ItemFormActivity;
 import com.example.lr_9.ListData;
 
+import com.example.lr_9.activity.SubgroupFormActivity;
 import com.example.lr_9.db.StaticDatabase;
 import com.example.lr_9.db.model.Group;
 import com.example.lr_9.db.model.Item;
@@ -74,7 +75,6 @@ public class FragmentContent extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_content, container, false);
-
 
 
         LinearLayout layout = new LinearLayout(getContext());
@@ -140,8 +140,7 @@ public class FragmentContent extends Fragment {
                 menu.add(Menu.NONE, SUBGROUP_DEL, Menu.NONE, "Удалить");
                 menu.add(Menu.NONE, SUBGROUP_EDIT, Menu.NONE, "Редактировать");
             }
-        }
-        else {
+        } else {
             LinearLayout lv = (LinearLayout) v;
 
             String textId = (String) ((TextView) lv.findViewById(R.id.textNameGroupId)).getText();
@@ -175,11 +174,11 @@ public class FragmentContent extends Fragment {
                 break;
             case SUBGROUP_DEL:
                 message = "Выбран пункт редактировать подкатегорию " + SelectedSubgroupId;
-             //   deleteGroup(SelectedGroupId);
+                deleteSubgroup(SelectedSubgroupId);
                 break;
             case SUBGROUP_EDIT:
                 message = "Выбран пункт редактировать подкатегорию " + SelectedSubgroupId;
-              //  updateGroup(SelectedGroupId);
+                updateSubgroup(SelectedSubgroupId);
                 break;
             default:
                 return super.onContextItemSelected(item);
@@ -200,6 +199,13 @@ public class FragmentContent extends Fragment {
         getActivity().recreate();
     }
 
+    private void deleteSubgroup(int selectedSubgroupId) {
+        StaticDatabase.getInstance().deleteSubGroupCascade(selectedSubgroupId);
+        getActivity().recreate();
+
+
+    }
+
     private void updateItem(int selectedItemId) {
         Intent groupFormActivity = new Intent(getActivity(), ItemFormActivity.class);
         groupFormActivity.putExtra(Item.class.getSimpleName(), StaticDatabase.getInstance().getItem(selectedItemId));
@@ -215,5 +221,14 @@ public class FragmentContent extends Fragment {
 
 
     }
+
+    private void updateSubgroup(int selectedSubgroupId) {
+        Intent groupFormActivity = new Intent(getActivity(), SubgroupFormActivity.class);
+        groupFormActivity.putExtra(Subgroup.class.getSimpleName(), StaticDatabase.getInstance().getSubgroup(selectedSubgroupId));
+        startActivity(groupFormActivity);
+
+
+    }
+
 
 }
