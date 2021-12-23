@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">LR_9</string>
+    <string name="text_tab1">Просмотр</string>
+    <string name="text_tab2">Редактирование</string>
+</resources>
